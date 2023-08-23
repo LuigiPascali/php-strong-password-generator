@@ -1,3 +1,7 @@
+<!-- MILESTONE 2: -->
+
+<?php require_once 'functions.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -46,22 +50,22 @@
 
                 <?php 
 
-                    function generateRandomPassword($lenght) {
-                        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
-                        $password = '';
+                    // function generateRandomPassword($lenght) {
+                    //     $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
+                    //     $password = '';
 
-                        for ($i = 0; $i < $lenght; $i++) {
-                            $randomIndex = rand(0, strlen($characters) - 1);
-                            $password .= $characters[$randomIndex];
-                        }
+                    //     for ($i = 0; $i < $lenght; $i++) {
+                    //         $randomIndex = rand(0, strlen($characters) - 1);
+                    //         $password .= $characters[$randomIndex];
+                    //     }
 
-                        return $password;
-                    }
+                    //     return $password;
+                    // }
 
                     if (isset($_GET['lenght'])) {
                         $passwordLenght = (int)$_GET['lenght'];
 
-                        if ($passwordLenght > 0) {
+                        if ($passwordLenght > 7) {
                             $generatedPassword = generateRandomPassword($passwordLenght);
 
                             echo '<div class="alert alert-success" role="alert">
@@ -70,7 +74,7 @@
 
                         } else {
                             echo '<div class="alert alert-danger" role="alert">
-                                    La lunghezza della password deve essere maggiore di 0.
+                                    La lunghezza della password deve essere maggiore di 7 caratteri.
                                  </div>';
                         }
 
