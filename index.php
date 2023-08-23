@@ -32,21 +32,70 @@
     </head>
 
     <body>
-       
-        <!-- ! Header Start -->
-        <header>
-           
-        </header>
 
         <!-- ! Main Start -->
         <main>
+
+            <div class="container mt-5">
+
+                <h1 class="mb-4">
+                    Strong Password Generator
+                </h1>
+
+                <!-- MILESTONE 1: -->
+
+                <?php 
+
+                    function generateRandomPassword($lenght) {
+                        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
+                        $password = '';
+
+                        for ($i = 0; $i < $lenght; $i++) {
+                            $randomIndex = rand(0, strlen($characters) - 1);
+                            $password .= $characters[$randomIndex];
+                        }
+
+                        return $password;
+                    }
+
+                    if (isset($_GET['lenght'])) {
+                        $passwordLenght = (int)$_GET['lenght'];
+
+                        if ($passwordLenght > 0) {
+                            $generatedPassword = generateRandomPassword($passwordLenght);
+
+                            echo '<div class="alert alert-success" role="alert">
+                                    Password Generata: ' . htmlspecialchars($generatedPassword) . '
+                                 </div>';
+
+                        } else {
+                            echo '<div class="alert alert-danger" role="alert">
+                                    La lunghezza della password deve essere maggiore di 0.
+                                 </div>';
+                        }
+
+                    }
+
+                ?>
+
+                <form action="index.php" method="get" class="mb-4">
+
+                    <label for="lenght" class="form-label">
+                        Lunghezza Password:
+                    </label>
+
+                    <input type="number" id="lenght" name="lenght" class="form-control" min="1" required>
+
+                    <button type="submit" class="btn btn-primary mt-2">
+                        Genera Password
+                    </button>
+                    
+                </form>
+
+
+            </div>
                                     
         </main>
-
-        <!-- ! Footer Start -->
-        <footer>
-
-        </footer>
 
     </body>
 
