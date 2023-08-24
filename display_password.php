@@ -1,6 +1,16 @@
-<!-- MILESTONE 2: -->
+<!-- MILESTONE 4: (BONUS) -->
 
-<?php require_once 'functions.php'; ?>
+<?php
+    session_start();
+
+    if (isset($_SESSION['generatedPassword'])) {
+        $generatedPassword = $_SESSION['generatedPassword'];
+        unset($_SESSION['generatedPassword']);
+    } else {
+        header("Location: index.php");
+        exit();
+    }
+?>
 
 <!DOCTYPE html>
 
@@ -33,7 +43,7 @@
         <link rel="stylesheet" href="./css/general.css">
         <link rel="stylesheet" href="./css/style.css">
 
-        <title> PHP Strong Password Generator </title>
+        <title> PHP Strong Password Generator - Display Password </title>
         
     </head>
 
@@ -44,24 +54,23 @@
 
             <div class="container mt-5">
 
-                <h1 class="mb-4">
-                    Strong Password Generator
-                </h1>
+                <div class="row justify-content-center">
 
-                <form action="functions.php" method="get" class="mb-4">
+                    <div class="col-md-6">
 
-                    <label for="lenght" class="form-label">
-                        Lunghezza Password:
-                    </label>
+                        <div class="card">
 
-                    <input type="number" id="passwordLenght" name="passwordLenght" class="form-control" required min="1">
+                            <div class="card-body">
+                                <h1 class="card-title">Password Generata <i class="fas fa-check-circle"></i></h1>
+                                <p class="card-text">La tua password generata è: <?php echo $generatedPassword; ?></p>
+                            </div>
 
-                    <button type="submit" class="btn btn-primary mt-2">
-                        Genera Password
-                    </button>
-                    
-                </form> 
+                        </div>
 
+                    </div>
+
+                </div>
+                
             </div>
                                     
         </main>
